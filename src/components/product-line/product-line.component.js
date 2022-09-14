@@ -9,7 +9,7 @@ import Button from "../button/button.component";
 
 const ProductLine = ({ product }) => {
     const dispatch = useDispatch();
-    const { name, state, media, id } = product;
+    const { name, state, media, id, priceAll, onePrice, cities } = product;
 
     return (
         <ProductLineContainer>
@@ -20,7 +20,16 @@ const ProductLine = ({ product }) => {
                 <Link to={`/edit/${id}`}>{name}</Link>
             </Wrapper>
             <Wrapper>{state}</Wrapper>
-            <Wrapper>qwr</Wrapper>
+            {
+                !onePrice ?
+                    <Wrapper>
+                        {cities.map(item =>
+                            <p key={cities.indexOf(item) + 777}>{item.name}: {item.price} &#8376;</p>
+                        )}
+                    </Wrapper>
+                    :
+                    <Wrapper>{priceAll} &#8376;</Wrapper>
+            }
             <Button type='nostyle' name='x' onClick={() => dispatch(filterProducts(id))} />
         </ProductLineContainer>
     )

@@ -16,4 +16,10 @@ export const ProductLineContainer = styled.div`
 export const Wrapper = styled.div`
     width: 20%;
     text-align: center;
+
+    p {
+       text-align: left;
+       padding-bottom: 10px;
+       margin-left: 20px;
+    }
 `;
