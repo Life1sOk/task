@@ -1,45 +1,9 @@
 import React, { useRef, useState } from "react";
-import styled from 'styled-components';
 
 import { useDispatch } from "react-redux";
-import { addMedia } from "../app/slices/current-product.slice";
+import { addMedia } from "../../app/slices/current-product.slice";
+import { InputFile, ImgFileContainer, ImgFile, ImgFileDelete } from './media-file.style';
 
-// ---------- Style Component -----//
-const ImgFile = styled.img`
-    width: 200px;
-    height: 200px;
-`;
-
-const InputFile = styled.label`
-    position: relative;
-    cursor: pointer;
-    width: 200px;
-    height: 200px;
-    border: 2px solid grey;
-    border-style: dotted;
-
-    .one-line {
-        position: absolute;
-        top: 20%;
-        left: 49%;
-        height: 60%;
-        border: 1px solid grey;
-    }
-
-    .two-line {
-        position: absolute;
-        top: 49%;
-        left: 20%;
-        width: 60%;
-        border: 1px solid grey;
-    }
-    
-    input {
-        display: none;
-    }
-`;
-
-//----------------------------------//
 
 const MediaFile = ({ setNextFile, nextFile, item }) => {
     const dispatch = useDispatch();
@@ -65,11 +29,18 @@ const MediaFile = ({ setNextFile, nextFile, item }) => {
         }
     }
 
+    const deleteHandler = () => {
+        const all = [...nextFile];
+        all.shift();
+
+        setNextFile(all)
+    }
+
     return (
         <>
             {
                 addImg ?
-                    <InputFile for="inpFile">
+                    <InputFile htmlFor="inpFile">
                         <div className="one-line" />
                         <div className="two-line" />
                         <input type="file"
@@ -80,8 +51,12 @@ const MediaFile = ({ setNextFile, nextFile, item }) => {
                         />
                     </InputFile>
                     :
-                    <ImgFile alt="img" src={url} className='file-one' />
+                    <ImgFileContainer>
+                        <ImgFile alt="img" src={url} className='file-one' />
+                        <ImgFileDelete onClick={deleteHandler}>X</ImgFileDelete>
+                    </ImgFileContainer>
             }
+
         </>
     )
 }
