@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { selectAll } from '../../app/slices/current-product.slice';
+import { selectAll, refreshState } from '../../app/slices/current-product.slice';
 import { ProductsContainer, Title, Footer } from './products-page.style';
 import usePagination from "../../hook/usePagination";
 // ---------- React Component -----//
@@ -12,6 +12,7 @@ import ProductsDisplay from "../../components/products-display/products-display.
 
 
 const Products = () => {
+    const dispatch = useDispatch();
     const countProducts = useSelector(selectAll)
     const [searchField, setSearchField] = useState('');
     const {
@@ -41,7 +42,7 @@ const Products = () => {
             <Title>
                 <h2>Товары: {countProducts.length}</h2>
                 <Link to='/create'>
-                    <Button name='Add' />
+                    <Button name='Add' onClick={() => dispatch(refreshState())} />
                 </Link>
             </Title>
             <Search searchChange={onSearchChange} />
