@@ -16,7 +16,7 @@ const ProductPriceSection = ({ item }) => {
             <span>Цена:</span>
             <PriceWrapper>
                 {
-                    oneCity ?
+                    !oneCity ?
                         <Checkbox>
                             <p>Одна цена для всех городов:</p>
                             <span className="product-price-span">{priceAll} &#8376;</span>

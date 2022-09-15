@@ -9,7 +9,13 @@ const initialState = {
             media: ['https://images.prom.ua/201190385_dynya--polza.jpg'],
             state: 'активный',
             onePrice: true,
-            priceAll: 2222
+            priceAll: 2222,
+            cities: [
+                { "id": 1, "name": "Алматы", price: 0 },
+                { "id": 2, "name": "Актобе", price: 0 },
+                { "id": 3, "name": "Астана", price: 0 },
+                { "id": 4, "name": "Павлодар", price: 0 },
+            ],
         },
         {
             id: 212,
@@ -18,7 +24,13 @@ const initialState = {
             media: ['https://vesti.ua/wp-content/uploads/2020/07/arbuz-1.jpg'],
             state: 'активный',
             onePrice: true,
-            priceAll: 3333
+            priceAll: 3333,
+            cities: [
+                { "id": 1, "name": "Алматы", price: 0 },
+                { "id": 2, "name": "Актобе", price: 0 },
+                { "id": 3, "name": "Астана", price: 0 },
+                { "id": 4, "name": "Павлодар", price: 0 },
+            ],
         },
         {
             id: 213,
@@ -27,7 +39,13 @@ const initialState = {
             media: ['https://zdravopedia.sk/assets/images/Ovocie/maliny.jpg'],
             state: 'активный',
             onePrice: true,
-            priceAll: 4444
+            priceAll: 4444,
+            cities: [
+                { "id": 1, "name": "Алматы", price: 0 },
+                { "id": 2, "name": "Актобе", price: 0 },
+                { "id": 3, "name": "Астана", price: 0 },
+                { "id": 4, "name": "Павлодар", price: 0 },
+            ],
         },
         {
             id: 214,
@@ -36,7 +54,13 @@ const initialState = {
             media: ['https://1884403144.rsc.cdn77.org/foto/kokos-jidlo-potraviny/Zml0LWluLzEwMzB4OTk5OS9maWx0ZXJzOnF1YWxpdHkoODUpOm5vX3Vwc2NhbGUoKS9pbWc/3182899.jpg?v=0&st=VXJcz_6dZjEGRf_rKEYAdfUEbwGocRGkQdU8UJrDJBc&ts=1600812000&e=0'],
             state: 'активный',
             onePrice: true,
-            priceAll: 5555
+            priceAll: 5555,
+            cities: [
+                { "id": 1, "name": "Алматы", price: 0 },
+                { "id": 2, "name": "Актобе", price: 0 },
+                { "id": 3, "name": "Астана", price: 0 },
+                { "id": 4, "name": "Павлодар", price: 0 },
+            ],
         },
     ],
     currentProduct: {
