@@ -5,7 +5,7 @@ import { addName } from "../../app/slices/current-product.slice";
 import { ProductWrapper, NameWrapper, ProductSectionContainer } from './product.section.style';
 import Editor from "../../components/editor/editor.component";
 
-const ProductSection = ({ name, editor }) => {
+const ProductSection = ({ name, editor, editName }) => {
     const dispatch = useDispatch();
 
     return (
@@ -14,7 +14,7 @@ const ProductSection = ({ name, editor }) => {
                 <span>Название:</span>
                 {
                     !name ?
-                        <input type='text' name="product-name" id="product-name" min='2' placeholder="Название" onChange={(e) => dispatch(addName(e.target.value))} /> :
+                        <input type='text' name="product-name" id="product-name" min='2' defaultValue={editName ? editName : null} placeholder="Название" onChange={(e) => dispatch(addName(e.target.value))} /> :
                         <p className="product-name">{name}</p>
                 }
             </NameWrapper>

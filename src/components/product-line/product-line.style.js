@@ -23,3 +23,9 @@ export const Wrapper = styled.div`
        margin-left: 20px;
     }
 `;
+
+export const ButtonsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`;

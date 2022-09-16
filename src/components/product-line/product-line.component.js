@@ -1,15 +1,21 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
-import { filterProducts } from "../../app/slices/current-product.slice";
-import { ProductLineContainer, Wrapper } from "./product-line.style";
+import { filterProducts, editState } from "../../app/slices/current-product.slice";
+import { ProductLineContainer, Wrapper, ButtonsWrapper } from "./product-line.style";
 import Button from "../button/button.component";
 
 
 const ProductLine = ({ product }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { name, state, media, id, priceAll, onePrice, cities } = product;
+
+    const editStateHandler = () => {
+        dispatch(editState(id))
+        navigate(`edit/${id}`)
+    }
 
     return (
         <ProductLineContainer>
@@ -17,7 +23,7 @@ const ProductLine = ({ product }) => {
                 <img alt={name} src={media[0]} />
             </Wrapper>
             <Wrapper>
-                <Link to={`/edit/${id}`}>{name}</Link>
+                <Link to={`/${id}`}>{name}</Link>
             </Wrapper>
             <Wrapper>{state}</Wrapper>
             {
@@ -30,7 +36,10 @@ const ProductLine = ({ product }) => {
                     :
                     <Wrapper>{priceAll} &#8376;</Wrapper>
             }
-            <Button type='nostyle' name='x' onClick={() => dispatch(filterProducts(id))} />
+            <ButtonsWrapper>
+                <Button type='nostyle' name='edit' onClick={editStateHandler} />
+                <Button type='nostyle' name='x' onClick={() => dispatch(filterProducts(id))} />
+            </ButtonsWrapper>
         </ProductLineContainer>
     )
 }

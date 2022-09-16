@@ -9,8 +9,6 @@ const ProductPriceSection = ({ item }) => {
     const { priceAll, cities } = item;
     const oneCity = useSelector(selectOnePrice);
 
-    console.log(item, 'item')
-
     return (
         <PriceContainer>
             <span>Цена:</span>

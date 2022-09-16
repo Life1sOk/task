@@ -17,11 +17,12 @@ const PriceLine = ({ city, display }) => {
         <PriceLineContainer>
             <span className="city">{name}:</span>
             {
-                !display ?
-                    <input className="input-price" type='number' min='1' placeholder='5000 &#8376;' step='10'
-                        onChange={(e) => setCurrentCity({ id, price: Number(e.target.value) })} />
-                    :
+                display ?
                     <span className="price">{city.price} &#8376;</span>
+                    :
+                    <input className="input-price" type='number' min='1' defaultValue={city.price} placeholder='5000 &#8376;' step='10'
+                        onChange={(e) => setCurrentCity({ id, price: Number(e.target.value) })} />
+
             }
         </PriceLineContainer>
     )

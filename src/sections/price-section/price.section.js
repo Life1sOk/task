@@ -5,12 +5,12 @@ import { selectCities, selectOnePrice, priceState, mainPrice } from "../../app/s
 import { PriceContainer, PriceWrapper, Checkbox, PriceTitle } from './price.section.style';
 import PriceLine from "../../components/price-line/price-line.component";
 
-const PriceSection = () => {
+const PriceSection = ({ editOnePrice, editPriceAll }) => {
     const dispatch = useDispatch();
     const allCities = useSelector(selectCities);
     const onePrice = useSelector(selectOnePrice);
     const [currentPrice, setCurrentPrice] = useState(0);
-    const [checkbox, setCheckbox] = useState(null);
+    const [checkbox, setCheckbox] = useState(editOnePrice ? editOnePrice : null);
 
     useEffect(() => {
         dispatch(priceState(checkbox))
@@ -25,10 +25,10 @@ const PriceSection = () => {
             <span>Цена:</span>
             <PriceWrapper>
                 <Checkbox>
-                    <input type='checkbox' onChange={(e) => setCheckbox(e.target.checked)} />
+                    <input type='checkbox' defaultChecked={editOnePrice ? editOnePrice : null} onChange={(e) => setCheckbox(e.target.checked)} />
                     <p>Одна цена для всех городов</p>
                 </Checkbox>
-                <input className="input" type='number' min='1' placeholder='5000 &#8376;' step='10'
+                <input className="input" type='number' min='1' defaultValue={editOnePrice ? editPriceAll : null} placeholder='5000 &#8376;' step='10'
                     onChange={(e) => setCurrentPrice(e.target.value)} disabled={!onePrice ? true : false} />
             </PriceWrapper>
             {

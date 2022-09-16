@@ -1,14 +1,13 @@
 import React, { useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { addMedia } from "../../app/slices/current-product.slice";
+import { addMedia, removeMedia } from "../../app/slices/current-product.slice";
 import { InputFile, ImgFileContainer, ImgFile, ImgFileDelete } from './media-file.style';
 
 
-const MediaFile = ({ setNextFile, nextFile, item }) => {
+const MediaFile = ({ item, id }) => {
     const dispatch = useDispatch();
-    const [addImg, setAddImg] = useState(true);
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState(item);
     const files = useRef();
 
     const fileHandler = (file) => {
@@ -18,11 +17,8 @@ const MediaFile = ({ setNextFile, nextFile, item }) => {
             const reader = new FileReader();
 
             reader.addEventListener('load', function () {
-                setAddImg(!addImg);
                 setUrl(this.result);
                 dispatch(addMedia(this.result));
-                let newOne = [...nextFile, item + 1];
-                setNextFile(newOne);
             })
 
             reader.readAsDataURL(currentFile);
@@ -30,16 +26,13 @@ const MediaFile = ({ setNextFile, nextFile, item }) => {
     }
 
     const deleteHandler = () => {
-        const all = [...nextFile];
-        all.shift();
-
-        setNextFile(all)
+        dispatch(removeMedia(id))
     }
 
     return (
         <>
             {
-                addImg ?
+                !item ?
                     <InputFile htmlFor="inpFile">
                         <div className="one-line" />
                         <div className="two-line" />
